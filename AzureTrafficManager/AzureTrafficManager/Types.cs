@@ -15,7 +15,12 @@ namespace AzureTrafficManager
 
     public enum OperationType
     {
-        RemoveTM
+        RemoveTM, GetTM, CreateTMProfile, CreateTMDefinition, CheckDns
+    }
+
+    public enum ParameterType
+    {
+        SubscriptonId, CertificateThumbprint, ProfileName, ProfileDomain, ServiceName
     }
 
 }

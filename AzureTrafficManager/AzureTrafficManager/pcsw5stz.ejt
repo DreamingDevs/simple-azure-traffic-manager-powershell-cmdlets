@@ -48,27 +48,17 @@ namespace AzureTrafficManager
         public static Uri GetUri(OperationType operationType, params string[] parameters)
         {
             string uriString;
-            string managementUri = "https://management.core.windows.net";
 
             switch (operationType)
             {
                 case OperationType.RemoveTM:
-                    uriString = String.Format("{0}/{1}/services/WATM/profiles/{2}", managementUri, parameters[0], parameters[1]);
+                    uriString = String.Format("https://management.core.windows.net/{0}/services/WATM/profiles/{1}", parameters[0], parameters[1]);
                     break;
                 case OperationType.GetTM:
-                    uriString = String.Format("{0}/{1}/services/WATM/profiles/{2}", managementUri, parameters[0], parameters[1]);
-                    break;
-                case OperationType.CreateTMProfile:
-                    uriString = String.Format("{0}/{1}/services/WATM/profiles", managementUri, parameters[0]);
-                    break;
-                case OperationType.CreateTMDefinition:
-                    uriString = String.Format("{0}/{1}/services/WATM/profiles/{2}/definitions", managementUri, parameters[0], parameters[1]);
-                    break;
-                case OperationType.CheckDns:
-                    uriString = String.Format("{0}/{1}/services/WATM/operations/isavailable/{2}", managementUri, parameters[0], parameters[1]);
+                    uriString = String.Format("https://management.core.windows.net/{0}/services/WATM/profiles/{1}", parameters[0], parameters[1]);
                     break;
                 default:
-                    uriString = String.Format("{0}/{1}/services/WATM/profiles/", managementUri, parameters[0]);
+                    uriString = String.Format("https://management.core.windows.net/{0}/services/WATM/profiles/", parameters[0]);
                     break;
             }
 
@@ -92,13 +82,6 @@ namespace AzureTrafficManager
             httpWebRequest.Method = method;
             httpWebRequest.Headers.Add("x-ms-version", "2011-10-01");
 
-            if (!string.IsNullOrWhiteSpace(payload))
-            {
-                byte[] bodyStart = System.Text.Encoding.UTF8.GetBytes(payload.ToString());
-                Stream dataStream = httpWebRequest.GetRequestStream();
-                dataStream.Write(bodyStart, 0, payload.ToString().Length);
-            }
-
             // Make the call using the web request.
             httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
@@ -117,16 +100,6 @@ namespace AzureTrafficManager
         public static string PrintResponse(this HttpResult result)
         {
             return string.Format("Status: {0} `n Response : {1}", result.StatusCode, result.Response);
-        }
-
-        public static bool Validate(this string parameter, ParameterType paramterType)
-        {
-            // Create a facade of validations here and use type to invoke corresponding validations
-            // For now we have basic set of validations
-            if (string.IsNullOrWhiteSpace(parameter))
-                throw new ArgumentNullException(parameter + " cannot be empty");
-
-            return true;
         }
     }
 }

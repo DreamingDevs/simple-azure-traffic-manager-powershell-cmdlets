@@ -27,6 +27,11 @@ namespace AzureTrafficManager
         {
             try
             {
+                // Validations
+                SubscriptionId.Validate(ParameterType.SubscriptonId);
+                CertificateThumbprint.Validate(ParameterType.CertificateThumbprint);
+                ProfileName.Validate(ParameterType.ProfileName);
+
                 // Get Management certificate
                 X509Certificate2 certificate = Helper.GetCertificate(CertificateThumbprint);
 
@@ -34,7 +39,7 @@ namespace AzureTrafficManager
                 Uri requestUri = Helper.GetUri(OperationType.RemoveTM, new string[] { SubscriptionId, ProfileName });
 
                 // Make Http Request
-                HttpResult result = Helper.CustomWebRequest("DELETE", requestUri, certificate);
+                HttpResult result = Helper.CustomWebRequest(requestUri, certificate, "DELETE", string.Empty);
 
                 // Print response
                 WriteObject(result.PrintResponse());
