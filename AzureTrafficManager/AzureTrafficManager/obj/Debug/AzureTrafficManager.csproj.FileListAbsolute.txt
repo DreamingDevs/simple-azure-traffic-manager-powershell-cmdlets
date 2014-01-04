@@ -1,0 +1,5 @@
+D:\Rami\simple-azure-traffic-manager-powershell-cmdlets\AzureTrafficManager\AzureTrafficManager\bin\Debug\AzureTrafficManager.dll
+D:\Rami\simple-azure-traffic-manager-powershell-cmdlets\AzureTrafficManager\AzureTrafficManager\bin\Debug\AzureTrafficManager.pdb
+D:\Rami\simple-azure-traffic-manager-powershell-cmdlets\AzureTrafficManager\AzureTrafficManager\obj\Debug\AzureTrafficManager.csprojResolveAssemblyReference.cache
+D:\Rami\simple-azure-traffic-manager-powershell-cmdlets\AzureTrafficManager\AzureTrafficManager\obj\Debug\AzureTrafficManager.dll
+D:\Rami\simple-azure-traffic-manager-powershell-cmdlets\AzureTrafficManager\AzureTrafficManager\obj\Debug\AzureTrafficManager.pdb
